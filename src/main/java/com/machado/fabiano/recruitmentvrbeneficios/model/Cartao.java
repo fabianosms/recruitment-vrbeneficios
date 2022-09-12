@@ -15,12 +15,12 @@ public class Cartao {
 
     private String senha;
 
-    private BigDecimal balance;
+    private BigDecimal saldo;
 
-    public Cartao(String numeroCartao, String senha, BigDecimal balance) {
+    public Cartao(String numeroCartao, String senha, BigDecimal saldo) {
         this.numeroCartao = numeroCartao;
         this.senha = senha;
-        this.balance = balance;
+        this.saldo = saldo;
     }
 
     public Cartao() {
@@ -32,5 +32,9 @@ public class Cartao {
 
     public String getSenha() {
         return senha;
+    }
+
+    public BigDecimal getSaldo() {
+        return saldo;
     }
 }
