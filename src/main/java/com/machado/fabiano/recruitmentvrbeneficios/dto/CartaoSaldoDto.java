@@ -1,6 +1,7 @@
 package com.machado.fabiano.recruitmentvrbeneficios.dto;
 
 import com.machado.fabiano.recruitmentvrbeneficios.model.Cartao;
+import org.springframework.http.HttpStatus;
 
 import java.math.BigDecimal;
 

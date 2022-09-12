@@ -6,6 +6,7 @@ import com.machado.fabiano.recruitmentvrbeneficios.dto.CartaoSaldoDto;
 import com.machado.fabiano.recruitmentvrbeneficios.model.Cartao;
 import com.machado.fabiano.recruitmentvrbeneficios.repository.CartaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -13,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cartoes")
@@ -34,8 +36,9 @@ public class CartaoController {
 
     @GetMapping("/{numeroCartao}")
     public CartaoSaldoDto getSaldoCartao(@PathVariable String numeroCartao) {
-        Cartao cartao = cartaoRepository.findByNumeroCartao(numeroCartao);
 
-        return new CartaoSaldoDto(cartao);
+            Cartao cartao = cartaoRepository.findByNumeroCartao(numeroCartao);
+
+            return new CartaoSaldoDto(cartao);
     }
 }
