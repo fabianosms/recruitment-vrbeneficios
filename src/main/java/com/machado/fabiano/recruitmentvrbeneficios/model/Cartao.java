@@ -17,13 +17,18 @@ public class Cartao {
 
     private BigDecimal saldo;
 
+    public Cartao() {
+    }
+
+    public Cartao(String numeroCartao, String senha) {
+        this.numeroCartao = numeroCartao;
+        this.senha = senha;
+    }
+
     public Cartao(String numeroCartao, String senha, BigDecimal saldo) {
         this.numeroCartao = numeroCartao;
         this.senha = senha;
         this.saldo = saldo;
-    }
-
-    public Cartao() {
     }
 
     public String getNumeroCartao() {
@@ -36,5 +41,9 @@ public class Cartao {
 
     public BigDecimal getSaldo() {
         return saldo;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
     }
 }
