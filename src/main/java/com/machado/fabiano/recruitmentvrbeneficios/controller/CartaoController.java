@@ -6,6 +6,7 @@ import com.machado.fabiano.recruitmentvrbeneficios.dto.CartaoSaldoDto;
 import com.machado.fabiano.recruitmentvrbeneficios.model.Cartao;
 import com.machado.fabiano.recruitmentvrbeneficios.repository.CartaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,9 +28,7 @@ public class CartaoController {
         Cartao card = form.converter();
         cartaoRepository.save(card);
 
-        URI uri = uriBuilder.path("/cartoes/{id}").buildAndExpand(card.getNumeroCartao()).toUri();
-
-        return ResponseEntity.created(uri).body(new CartaoDto(card));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new CartaoDto(card));
     }
 
     @GetMapping("/{numeroCartao}")
