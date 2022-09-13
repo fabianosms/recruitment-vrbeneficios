@@ -3,6 +3,7 @@ package com.machado.fabiano.recruitmentvrbeneficios.controller;
 import com.machado.fabiano.recruitmentvrbeneficios.dto.CartaoDto;
 import com.machado.fabiano.recruitmentvrbeneficios.dto.CartaoForm;
 import com.machado.fabiano.recruitmentvrbeneficios.dto.CartaoSaldoDto;
+import com.machado.fabiano.recruitmentvrbeneficios.dto.EmptyJsonResponse;
 import com.machado.fabiano.recruitmentvrbeneficios.model.Cartao;
 import com.machado.fabiano.recruitmentvrbeneficios.repository.CartaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,14 @@ public class CartaoController {
     }
 
     @GetMapping("/{numeroCartao}")
-    public CartaoSaldoDto getSaldoCartao(@PathVariable String numeroCartao) {
+    public ResponseEntity<?> getSaldoCartao(@PathVariable String numeroCartao) {
 
+        try {
             Cartao cartao = cartaoRepository.findByNumeroCartao(numeroCartao);
+            return ResponseEntity.status(HttpStatus.OK).body(new CartaoSaldoDto(cartao));
 
-            return new CartaoSaldoDto(cartao);
+        } catch (Exception e) {
+            return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.NOT_FOUND);
+        }
     }
 }
