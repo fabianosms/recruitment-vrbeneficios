@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/transacoes")
@@ -31,8 +32,15 @@ public class TransacaoController {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("CARTAO_INEXISTENTE");
         }
 
-        cartao.setSaldo(cartao.getSaldo().subtract(form.getValor()));
+        if (cartao.getSaldo().compareTo(form.getValor()) < 0) {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("SALDO_INSUFICIENTE");
+        }
 
+        if (!Objects.equals(cartao.getSenha(), form.getSenhaCartao())) {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("SENHA_INVALIDA");
+        }
+
+        cartao.setSaldo(cartao.getSaldo().subtract(form.getValor()));
         return ResponseEntity.status(HttpStatus.CREATED).body("OK");
     }
 }
