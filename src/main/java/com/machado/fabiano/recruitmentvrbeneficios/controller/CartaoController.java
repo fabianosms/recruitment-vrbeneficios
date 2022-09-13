@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.net.URI;
 
 @RestController
 @RequestMapping("/cartoes")
@@ -24,11 +22,11 @@ public class CartaoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<CartaoDto> criarCartao(@RequestBody @Valid CartaoForm form, UriComponentsBuilder uriBuilder) {
-        Cartao card = form.converter();
-        cartaoRepository.save(card);
+    public ResponseEntity<CartaoDto> criarCartao(@RequestBody @Valid CartaoForm form) {
+        Cartao cartao = form.converter();
+        cartaoRepository.save(cartao);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(new CartaoDto(card));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new CartaoDto(cartao));
     }
 
     @GetMapping("/{numeroCartao}")
