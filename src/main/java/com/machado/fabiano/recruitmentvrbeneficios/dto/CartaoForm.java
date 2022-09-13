@@ -1,15 +1,16 @@
 package com.machado.fabiano.recruitmentvrbeneficios.dto;
 
 import com.machado.fabiano.recruitmentvrbeneficios.model.Cartao;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class CartaoForm {
 
-//    @NotNull @NotEmpty @Length(min = 16, max = 16)
     private String numeroCartao;
 
-//    @NotNull @NotEmpty @Length(min = 4, max = 4)
     private String senha;
 
     public Cartao converter() {

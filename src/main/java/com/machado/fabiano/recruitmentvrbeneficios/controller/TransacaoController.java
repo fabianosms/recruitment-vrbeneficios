@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.util.Objects;
 
 @RestController
@@ -24,7 +23,7 @@ public class TransacaoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> realizarTransacao(@RequestBody @Valid TransacaoForm form) {
+    public ResponseEntity<String> realizarTransacao(@RequestBody TransacaoForm form) {
 
         Cartao cartao = cartaoRepository.findByNumeroCartao(form.getNumeroCartao());
 

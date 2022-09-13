@@ -8,9 +8,9 @@ public class CartaoDto {
 
     private String numeroCartao;
 
-    public CartaoDto(Cartao card) {
-        this.senha = card.getSenha();
-        this.numeroCartao = card.getNumeroCartao();
+    public CartaoDto(Cartao cartao) {
+        this.senha = cartao.getSenha();
+        this.numeroCartao = cartao.getNumeroCartao();
     }
 
     public String getNumeroCartao() {

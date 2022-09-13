@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/cartoes")
@@ -22,7 +21,7 @@ public class CartaoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<CartaoDto> criarCartao(@RequestBody @Valid CartaoForm form) {
+    public ResponseEntity<CartaoDto> criarCartao(@RequestBody CartaoForm form) {
         Cartao cartao = form.converter();
 
         if (cartaoRepository.findByNumeroCartao(cartao.getNumeroCartao()) == null) {
