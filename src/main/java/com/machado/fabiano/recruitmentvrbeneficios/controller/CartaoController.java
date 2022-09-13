@@ -43,7 +43,7 @@ public class CartaoController {
             return ResponseEntity.status(HttpStatus.OK).body(new CartaoSaldoDto(cartao));
 
         } catch (Exception e) {
-            return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new EmptyJsonResponse(), HttpStatus.NOT_FOUND);
         }
     }
 }

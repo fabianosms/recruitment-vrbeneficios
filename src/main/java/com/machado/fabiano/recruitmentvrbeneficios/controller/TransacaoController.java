@@ -24,7 +24,13 @@ public class TransacaoController {
     @PostMapping
     @Transactional
     public ResponseEntity<String> realizarTransacao(@RequestBody @Valid TransacaoForm form) {
+
         Cartao cartao = cartaoRepository.findByNumeroCartao(form.getNumeroCartao());
+
+        if (cartao == null) {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("CARTAO_INEXISTENTE");
+        }
+
         cartao.setSaldo(cartao.getSaldo().subtract(form.getValor()));
 
         return ResponseEntity.status(HttpStatus.CREATED).body("OK");
