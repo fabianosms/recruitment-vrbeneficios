@@ -25,9 +25,14 @@ public class CartaoController {
     @Transactional
     public ResponseEntity<CartaoDto> criarCartao(@RequestBody @Valid CartaoForm form) {
         Cartao cartao = form.converter();
-        cartaoRepository.save(cartao);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(new CartaoDto(cartao));
+        if (cartaoRepository.findByNumeroCartao(cartao.getNumeroCartao()) == null) {
+            cartaoRepository.save(cartao);
+            return ResponseEntity.status(HttpStatus.CREATED).body(new CartaoDto(cartao));
+
+        } else {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new CartaoDto(cartao));
+        }
     }
 
     @GetMapping("/{numeroCartao}")

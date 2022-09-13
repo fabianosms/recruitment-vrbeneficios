@@ -2,6 +2,7 @@ package com.machado.fabiano.recruitmentvrbeneficios.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cartao")
@@ -29,6 +30,14 @@ public class Cartao {
         this.numeroCartao = numeroCartao;
         this.senha = senha;
         this.saldo = saldo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        Cartao cartao = (Cartao) o;
+
+        return this.numeroCartao.equals(cartao.getNumeroCartao());
     }
 
     public String getNumeroCartao() {
