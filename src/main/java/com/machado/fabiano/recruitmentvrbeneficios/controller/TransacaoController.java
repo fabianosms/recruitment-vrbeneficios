@@ -39,7 +39,7 @@ public class TransacaoController {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("SENHA_INVALIDA");
         }
 
-        cartao.setSaldo(cartao.getSaldo().subtract(form.getValor()));
+        cartao.sacar(form);
         return ResponseEntity.status(HttpStatus.CREATED).body("OK");
     }
 }

@@ -1,5 +1,8 @@
 package com.machado.fabiano.recruitmentvrbeneficios.model;
 
+import com.machado.fabiano.recruitmentvrbeneficios.dto.CartaoForm;
+import com.machado.fabiano.recruitmentvrbeneficios.dto.TransacaoForm;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -30,6 +33,10 @@ public class Cartao {
         this.numeroCartao = numeroCartao;
         this.senha = senha;
         this.saldo = saldo;
+    }
+
+    public void sacar(TransacaoForm form) {
+        this.setSaldo(this.getSaldo().subtract(form.getValor()));
     }
 
     @Override
